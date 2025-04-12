@@ -1,7 +1,7 @@
 from pygame import *
 import pygame
 
-W =  700
+W =  900
 H = 500
 
 window = display.set_mode((W, H))
@@ -72,18 +72,23 @@ while game:
         if ball.rect.y > H - 50 or ball.rect.y < 0 :
             speed_y *= -1
 
-        if sprite.collide_rect(racet_l, ball) or sprite.collide_rect(racet_r, ball):
+        if sprite.collide_rect(racet_l, ball) and speed_x < 0:
+            speed_y *= -1
+            speed_x *= -1
+
+        if sprite.collide_rect(racet_r, ball) and speed_x > 0:
             speed_y *= -1
             speed_x *= -1
 
         u_lose_l = font.render('Игрок 1 проиграл!!!', 1, (139, 0, 0))
         u_lose_r = font.render('Игрок 2 проиграл!!!', 1, (139, 0, 0))
+        
         if ball.rect.x > W:
-            window.blit(u_lose_r, (200, 200))
+            window.blit(u_lose_r, (270, 200))
             finish = True
         
         if ball.rect.x < 0:
-            window.blit(u_lose_l, (200, 200))
+            window.blit(u_lose_l, (270, 200))
             finish = True
         display.update()
         clock.tick(FPS)
