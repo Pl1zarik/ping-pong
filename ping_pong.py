@@ -90,7 +90,13 @@ while game:
         if ball.rect.x < 0:
             window.blit(u_lose_l, (270, 200))
             finish = True
-        display.update()
-        clock.tick(FPS)
-        
-        
+    else:
+        restart_game = font.render('Press space restart game!', True, (0, 0, 0))
+        window.blit(restart_game, (270, 150))
+        keys_pressed = key.get_pressed()
+        if keys_pressed[K_SPACE]:
+            ball.rect.y = H//2
+            ball.rect.x = W//2
+            finish = False
+    display.update()
+    clock.tick(FPS)    
