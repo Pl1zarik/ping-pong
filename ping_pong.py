@@ -92,7 +92,7 @@ while game:
             finish = True
     else:
         restart_game = font.render('Press space restart game!', True, (0, 0, 0))
-        window.blit(restart_game, (270, 150))
+        window.blit(restart_game, (270, 250))
         keys_pressed = key.get_pressed()
         if keys_pressed[K_SPACE]:
             ball.rect.y = H//2
